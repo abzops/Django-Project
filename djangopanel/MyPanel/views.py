@@ -7,11 +7,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Project
 
-@login_required
+@login_required(login_url='login')  # Restrict access to authenticated users
 def index(request):
     sales = Project.objects.all()
     return render(request, 'Index.html', {'sales': sales})
 
+@login_required(login_url='login')  # Restrict access to authenticated users
 def add_project(request):
     if request.method == 'POST':
         project_name = request.POST['project_name']
@@ -21,6 +22,7 @@ def add_project(request):
         return redirect('index')
     return render(request, 'add_project.html')
 
+@login_required(login_url='login')  # Restrict access to authenticated users
 def delete_project(request, project_id):
     if request.method == 'POST':
         project = get_object_or_404(Project, id=project_id)
@@ -29,6 +31,8 @@ def delete_project(request, project_id):
     return JsonResponse({'success': False}, status=400)
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('index')  # Redirect logged-in users to the index page
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -42,10 +46,12 @@ def signup(request):
             else:
                 messages.error(request, 'Username already exists.')
         else:
-            messages.error(request, 'Passwords do not match.')
+                messages.error(request, 'Passwords do not match.')
     return render(request, 'signup.html')
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('index')  # Redirect logged-in users to the index page
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -58,7 +64,7 @@ def login_view(request):
             messages.error(request, 'Invalid username or password.')
     return render(request, 'login.html')
 
-@login_required
+@login_required(login_url='login')  # Restrict access to authenticated users
 def logout_view(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully.')

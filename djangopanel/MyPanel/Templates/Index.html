@@ -26,6 +26,8 @@
         --primary-hover: #4338ca;
         --success-color: #10b981;
         --success-hover: #059669;
+        --warning-color: #f59e0b;
+        --danger-color: #ef4444;
         --dark-color: #1e293b;
         --light-color: #f8fafc;
         --card-bg: #ffffff;
@@ -53,14 +55,16 @@
         backdrop-filter: blur(8px);
         box-shadow: var(--shadow-md);
         padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .navbar-brand {
-        font-weight: 600;
+        font-weight: 700;
         font-size: 1.35rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        letter-spacing: -0.5px;
       }
 
       .navbar-brand i {
@@ -105,8 +109,14 @@
       }
 
       .card:hover {
-        transform: translateY(-3px);
+        transform: translateY(-5px);
         box-shadow: var(--shadow-lg);
+      }
+
+      .card-header {
+        background-color: rgba(79, 70, 229, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 1rem 1.5rem;
       }
 
       .card-body {
@@ -118,7 +128,7 @@
 
       .card-title {
         font-weight: 600;
-        color: var(--primary-color);
+        color: var(--dark-color);
         margin-bottom: 1rem;
         font-size: 1.15rem;
         display: flex;
@@ -128,6 +138,7 @@
 
       .card-title i {
         font-size: 1rem;
+        color: var(--primary-color);
       }
 
       .card-text {
@@ -139,6 +150,9 @@
       /* Project info with better typography */
       .project-info {
         margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: rgba(248, 250, 252, 0.5);
+        border-radius: 0.5rem;
       }
 
       .project-info strong {
@@ -151,6 +165,33 @@
         text-align: center;
         margin-right: 0.5rem;
         color: var(--primary-light);
+      }
+
+      /* Status indicators */
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-active {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: var(--success-color);
+      }
+
+      .status-pending {
+        background-color: rgba(245, 158, 11, 0.1);
+        color: var(--warning-color);
+      }
+
+      .status-completed {
+        background-color: rgba(79, 70, 229, 0.1);
+        color: var(--primary-color);
       }
 
       /* Improved button styling */
@@ -176,11 +217,46 @@
         box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
       }
 
+      .btn-edit {
+        background-color: var(--primary-light);
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.65rem 1.25rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: var(--transition);
+        width: 100%;
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: white;
+      }
+
+      .btn-edit:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2);
+        color: white;
+      }
+
       /* Badge styling */
       .badge {
         font-weight: 500;
         padding: 0.35rem 0.65rem;
         border-radius: 0.375rem;
+      }
+
+      /* Progress bar styling */
+      .progress {
+        height: 8px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .progress-bar {
+        background-color: var(--primary-color);
       }
 
       /* Empty state design */
@@ -225,14 +301,20 @@
       /* Page header with subtle design */
       .page-header {
         margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
       }
 
       .page-title {
-        font-weight: 600;
-        font-size: 1.5rem;
+        font-weight: 700;
+        font-size: 1.75rem;
         color: var(--dark-color);
         position: relative;
         padding-bottom: 0.75rem;
+        letter-spacing: -0.5px;
       }
 
       .page-title::after {
@@ -241,9 +323,67 @@
         bottom: 0;
         left: 0;
         width: 3rem;
-        height: 3px;
+        height: 4px;
         background: var(--primary-color);
         border-radius: 3px;
+      }
+
+      /* Stats cards */
+      .stats-card {
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        background: white;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .stats-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .stats-card .icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+      }
+
+      .stats-card .icon-primary {
+        background-color: rgba(79, 70, 229, 0.1);
+        color: var(--primary-color);
+      }
+
+      .stats-card .icon-success {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: var(--success-color);
+      }
+
+      .stats-card .icon-warning {
+        background-color: rgba(245, 158, 11, 0.1);
+        color: var(--warning-color);
+      }
+
+      .stats-card .icon-danger {
+        background-color: rgba(239, 68, 68, 0.1);
+        color: var(--danger-color);
+      }
+
+      .stats-card h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .stats-card p {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-bottom: 0;
       }
 
       /* Footer styling */
@@ -252,6 +392,7 @@
         color: var(--light-color);
         padding: 1.5rem 0;
         margin-top: auto;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .footer-content {
@@ -277,11 +418,19 @@
         color: rgba(255, 255, 255, 0.7);
         transition: var(--transition);
         font-size: 1.1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
       }
 
       .social-links a:hover {
         color: white;
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.1);
       }
 
       /* Responsive adjustments */
@@ -297,7 +446,7 @@
         }
 
         .page-title {
-          font-size: 1.3rem;
+          font-size: 1.5rem;
         }
 
         .empty-state {
@@ -330,11 +479,11 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="#">
           <i class="fas fa-chart-pie"></i>
-          <span>Admin Panel</span>
+          <span>ProjectFlow</span>
         </a>
         <button
           class="navbar-toggler"
@@ -359,6 +508,12 @@
               <a class="nav-link" href="{% url 'add_project' %}">
                 <i class="fas fa-plus-circle"></i>
                 <span>Add Project</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-chart-line"></i>
+                <span>Reports</span>
               </a>
             </li>
             <!-- User Profile Dropdown -->
@@ -389,6 +544,7 @@
                     <i class="fas fa-cog me-2"></i>Settings
                   </a>
                 </li>
+                <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" href="{%url 'logout'%}">
                     <i class="fas fa-sign-out-alt me-2"></i>Logout
@@ -403,24 +559,130 @@
 
     <!-- Main Content -->
     <main class="main-container">
-      <div class="container mt-5">
+      <div class="container">
         <div class="page-header">
-          <h1 class="page-title">Project List</h1>
+          <h1 class="page-title">Project Dashboard</h1>
+          <div class="d-flex align-items-center">
+            <span class="me-2">Last updated:</span>
+            <span class="badge bg-light text-dark">Just now</span>
+          </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="row mb-4">
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card">
+              <div class="icon icon-primary">
+                <i class="fas fa-project-diagram"></i>
+              </div>
+              <h3>12</h3>
+              <p>Active Projects</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card">
+              <div class="icon icon-success">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3>24</h3>
+              <p>Completed</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card">
+              <div class="icon icon-warning">
+                <i class="fas fa-clock"></i>
+              </div>
+              <h3>5</h3>
+              <p>Pending</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card">
+              <div class="icon icon-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <h3>2</h3>
+              <p>Overdue</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-header mt-5">
+          <h1 class="page-title">Your Projects</h1>
+          <a href="{% url 'add_project' %}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>New Project
+          </a>
         </div>
 
         <div class="row">
           {% for project in sales %}
           <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
             <div class="card">
+              <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="status-indicator status-active">
+                    <i class="fas fa-circle me-1" style="font-size: 0.5rem"></i>
+                    Active
+                  </span>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-sm btn-link text-muted"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <li>
+                        <a class="dropdown-item" href="#"
+                          ><i class="fas fa-edit me-2"></i>Edit</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"
+                          ><i class="fas fa-trash-alt me-2"></i>Delete</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"
+                          ><i class="fas fa-share-alt me-2"></i>Share</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
               <div class="card-body">
-                <h5 class="card-title">
-                  <i class="fas fa-project-diagram"></i>
-                  {{ project.project_name }}
-                </h5>
+                <h5 class="card-title">{{ project.project_name }}</h5>
+
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between mb-1">
+                    <small class="text-muted">Progress</small>
+                    <small class="text-muted">65%</small>
+                  </div>
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 65%"
+                      aria-valuenow="65"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                </div>
+
                 <div class="project-info">
                   <p class="card-text">
                     <i class="fas fa-align-left"></i>
-                    <strong>Description:</strong> {{ project.description }}
+                    <strong>Description:</strong>
+                    {{project.description|truncatewords:15 }}
                   </p>
                 </div>
                 <div class="project-info">
@@ -428,6 +690,13 @@
                     <i class="far fa-calendar-alt"></i>
                     <strong>Deadline:</strong>
                     <span class="badge bg-primary">{{ project.deadline }}</span>
+                  </p>
+                </div>
+                <div class="project-info">
+                  <p class="card-text">
+                    <i class="fas fa-users"></i>
+                    <strong>Team:</strong>
+                    <span class="badge bg-secondary">5 members</span>
                   </p>
                 </div>
                 <button
@@ -438,6 +707,10 @@
                   <i class="fas fa-check-circle"></i>
                   <span>Mark as Complete</span>
                 </button>
+                <button class="btn btn-edit">
+                  <i class="fas fa-edit"></i>
+                  <span>Edit Project</span>
+                </button>
               </div>
             </div>
           </div>
@@ -446,7 +719,11 @@
             <div class="empty-state">
               <i class="fas fa-folder-open"></i>
               <h3>No Projects Found</h3>
-              <p>Get started by adding your first project to the system</p>
+              <p>
+                Get started by adding your first project to the system. Projects
+                help you organize work, track progress, and collaborate with
+                your team.
+              </p>
               <a href="{% url 'add_project' %}" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Add New Project
               </a>
@@ -460,7 +737,8 @@
     <!-- Footer -->
     <footer>
       <div class="container footer-content">
-        <p>&copy; 2025 Admin Panel. All Rights Reserved.</p>
+        <p>&copy; 2025 ProjectFlow. All Rights Reserved.</p>
+        <p class="text-muted">v2.4.1</p>
         <div class="social-links">
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-facebook"></i></a>
@@ -536,6 +814,21 @@
             alert("An error occurred.");
           });
       }
+
+      // Add animation to cards on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(20px)";
+          card.style.transition = "all 0.4s ease";
+
+          setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, 100 * index);
+        });
+      });
     </script>
   </body>
 </html>
