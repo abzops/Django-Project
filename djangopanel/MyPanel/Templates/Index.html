@@ -39,23 +39,31 @@
         --transition: all 0.2s ease-in-out;
       }
 
+      /* Base Styles */
       body {
-        background: #f8fafc;
+        background: var(--light-color);
         font-family: "Inter", sans-serif;
         color: var(--dark-color);
         line-height: 1.6;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        margin: 0;
       }
 
-      /* Improved navbar with glass effect */
+      /* Navbar */
       .navbar {
         background: rgba(79, 70, 229, 0.95);
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(12px);
         box-shadow: var(--shadow-md);
-        padding: 0.75rem 0;
+        padding: 0.5rem 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition);
+      }
+
+      .navbar.scrolled {
+        background: rgba(79, 70, 229, 0.98);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       }
 
       .navbar-brand {
@@ -65,6 +73,12 @@
         align-items: center;
         gap: 0.5rem;
         letter-spacing: -0.5px;
+        color: white;
+        transition: var(--transition);
+      }
+
+      .navbar-brand:hover {
+        transform: translateY(-1px);
       }
 
       .navbar-brand i {
@@ -79,23 +93,94 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.9);
       }
 
       .nav-link:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        transform: translateY(-1px);
       }
 
       .nav-link.active {
         background: rgba(255, 255, 255, 0.2);
+        color: white;
+        font-weight: 600;
       }
 
-      /* Main content with better spacing */
+      /* User Profile */
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 2rem;
+        transition: var(--transition);
+      }
+
+      .user-profile:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: var(--transition);
+      }
+
+      .user-name {
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: white;
+      }
+
+      /* Dropdown */
+      .dropdown-toggle::after {
+        display: none;
+      }
+
+      .dropdown-menu {
+        border: none;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        margin-top: 0.5rem;
+        padding: 0.5rem 0;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .dropdown-item {
+        padding: 0.5rem 1.25rem;
+        font-weight: 500;
+        color: var(--dark-color);
+        transition: var(--transition);
+        border-radius: 0.5rem;
+        margin: 0 0.5rem;
+        width: auto;
+      }
+
+      .dropdown-item:hover {
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--primary-color);
+        transform: translateX(3px);
+      }
+
+      .dropdown-item i {
+        width: 1.25rem;
+        text-align: center;
+        margin-right: 0.75rem;
+        color: var(--primary-color);
+      }
+
+      /* Main Content */
       .main-container {
         padding: var(--section-padding) 0;
         flex: 1;
       }
 
-      /* Modern card design */
+      /* Cards */
       .card {
         border: none;
         border-radius: var(--border-radius);
@@ -147,7 +232,7 @@
         margin-bottom: 1rem;
       }
 
-      /* Project info with better typography */
+      /* Project Info */
       .project-info {
         margin-bottom: 1rem;
         padding: 0.75rem;
@@ -167,7 +252,7 @@
         color: var(--primary-light);
       }
 
-      /* Status indicators */
+      /* Status Indicators */
       .status-indicator {
         display: inline-flex;
         align-items: center;
@@ -194,7 +279,7 @@
         color: var(--primary-color);
       }
 
-      /* Improved button styling */
+      /* Buttons */
       .btn-complete {
         background-color: var(--success-color);
         border: none;
@@ -209,6 +294,7 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
+        color: white;
       }
 
       .btn-complete:hover {
@@ -241,14 +327,14 @@
         color: white;
       }
 
-      /* Badge styling */
+      /* Badges */
       .badge {
         font-weight: 500;
         padding: 0.35rem 0.65rem;
         border-radius: 0.375rem;
       }
 
-      /* Progress bar styling */
+      /* Progress Bars */
       .progress {
         height: 8px;
         border-radius: 4px;
@@ -259,7 +345,7 @@
         background-color: var(--primary-color);
       }
 
-      /* Empty state design */
+      /* Empty State */
       .empty-state {
         background: white;
         border-radius: var(--border-radius);
@@ -298,7 +384,7 @@
         border-radius: 0.5rem;
       }
 
-      /* Page header with subtle design */
+      /* Page Header */
       .page-header {
         margin-bottom: 2rem;
         display: flex;
@@ -328,7 +414,7 @@
         border-radius: 3px;
       }
 
-      /* Stats cards */
+      /* Stats Cards */
       .stats-card {
         border-radius: var(--border-radius);
         padding: 1.5rem;
@@ -386,7 +472,7 @@
         margin-bottom: 0;
       }
 
-      /* Footer styling */
+      /* Footer */
       footer {
         background: var(--dark-color);
         color: var(--light-color);
@@ -433,7 +519,108 @@
         background: rgba(255, 255, 255, 0.1);
       }
 
-      /* Responsive adjustments */
+      /* Modal Styles */
+      .modal-content {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .profile-img:hover {
+        transform: scale(1.03);
+      }
+
+      .avatar-upload {
+        position: relative;
+        display: inline-block;
+      }
+
+      .avatar-edit {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        background: #4e54c8;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .avatar-edit:hover {
+        background: #3a3f9e;
+        transform: scale(1.1);
+      }
+
+      .btn-primary {
+        background: #4e54c8;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background: #3a3f9e;
+        transform: translateY(-1px);
+      }
+
+      .btn-outline-danger {
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline-danger:hover {
+        transform: translateY(-1px);
+      }
+
+      .input-group-text {
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus,
+      .input-group-text:focus-within {
+        border-color: #4e54c8;
+        box-shadow: 0 0 0 0.25rem rgba(78, 84, 200, 0.25);
+      }
+
+      /* Edit Project Modal */
+      .edit-project-modal .modal-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .edit-project-modal .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .edit-project-modal .form-control,
+      .edit-project-modal .form-select {
+        border-radius: 0.5rem;
+        padding: 0.65rem 1rem;
+        border: 1px solid #e2e8f0;
+      }
+
+      .edit-project-modal .form-control:focus,
+      .edit-project-modal .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25);
+      }
+
+      /* Responsive Adjustments */
       @media (max-width: 992px) {
         :root {
           --section-padding: 2rem;
@@ -455,6 +642,10 @@
 
         .empty-state i {
           font-size: 2rem;
+        }
+
+        .user-name {
+          display: none;
         }
       }
 
@@ -519,23 +710,33 @@
             <!-- User Profile Dropdown -->
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                class="nav-link dropdown-toggle p-0"
                 href="#"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i class="fas fa-user-circle me-1"></i>
-                {% if user.is_authenticated %} {{ user.username }} {% else %}
-                Guest {% endif %}
+                <div class="user-profile">
+                  <img
+                    src="{{ user.profile.profile_picture.url }}"
+                    alt="User Profile"
+                    class="user-avatar"
+                  />
+                  <span class="user-name">{{ user.username }}</span>
+                </div>
               </a>
               <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdown"
               >
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#profileModal"
+                  >
                     <i class="fas fa-user me-2"></i>Profile
                   </a>
                 </li>
@@ -640,19 +841,23 @@
                       aria-labelledby="dropdownMenuButton"
                     >
                       <li>
-                        <a class="dropdown-item" href="#"
-                          ><i class="fas fa-edit me-2"></i>Edit</a
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          onclick="editProject('{{ project.id }}')"
                         >
+                          <i class="fas fa-edit me-2"></i>Edit
+                        </a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#"
-                          ><i class="fas fa-trash-alt me-2"></i>Delete</a
-                        >
+                        <a class="dropdown-item" href="#">
+                          <i class="fas fa-trash-alt me-2"></i>Delete
+                        </a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#"
-                          ><i class="fas fa-share-alt me-2"></i>Share</a
-                        >
+                        <a class="dropdown-item" href="#">
+                          <i class="fas fa-share-alt me-2"></i>Share
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -707,7 +912,10 @@
                   <i class="fas fa-check-circle"></i>
                   <span>Mark as Complete</span>
                 </button>
-                <button class="btn btn-edit">
+                <button
+                  class="btn btn-edit"
+                  onclick="editProject('{{ project.id }}')"
+                >
                   <i class="fas fa-edit"></i>
                   <span>Edit Project</span>
                 </button>
@@ -734,6 +942,206 @@
       </div>
     </main>
 
+    <!-- Profile Modal -->
+    <div
+      class="modal fade"
+      id="profileModal"
+      tabindex="-1"
+      aria-labelledby="profileModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+          <div class="modal-header bg-gradient-primary text-white">
+            <h5 class="modal-title fs-5 fw-semibold" id="profileModalLabel">
+              Profile Settings
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <!-- Profile Picture Section -->
+            <div class="text-center mb-4">
+              <div class="position-relative d-inline-block">
+                <div class="avatar-upload">
+                  <img
+                    src="{{ user.profile.profile_picture.url }}"
+                    alt="Profile Picture"
+                    class="rounded-circle shadow profile-img"
+                    id="profileImagePreview"
+                  />
+                  <label for="profilePicInput" class="avatar-edit">
+                    <i class="fas fa-camera text-white"></i>
+                    <input
+                      type="file"
+                      class="d-none"
+                      id="profilePicInput"
+                      name="profile_picture"
+                      accept="image/*"
+                    />
+                  </label>
+                </div>
+              </div>
+              <h6 class="mt-3 mb-0">{{ user.first_name }}</h6>
+              <p class="text-muted small">{{ user.email }}</p>
+            </div>
+
+            <!-- Profile Form -->
+            <form
+              method="POST"
+              action="{% url 'update_profile' %}"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+
+              <div class="mb-3">
+                <label for="name" class="form-label fw-medium">Full Name</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"
+                    ><i class="fas fa-user"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    value="{{ user.first_name }}"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="email" class="form-label fw-medium"
+                  >Email Address</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-light"
+                    ><i class="fas fa-envelope"></i
+                  ></span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    value="{{ user.email }}"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div
+                class="d-flex justify-content-between align-items-center mt-4 pt-2 border-top"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-primary px-4 py-2 rounded-pill fw-medium"
+                >
+                  <i class="fas fa-save me-2"></i>Save Changes
+                </button>
+                <a
+                  href="{% url 'logout' %}"
+                  class="btn btn-outline-danger px-4 py-2 rounded-pill fw-medium"
+                >
+                  <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Project Modal -->
+    <div
+      class="modal fade"
+      id="editProjectModal"
+      tabindex="-1"
+      aria-labelledby="editProjectModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content border-0 shadow-lg edit-project-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProjectModalLabel">Edit Project</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editProjectForm" method="POST" action="">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label for="projectName" class="form-label"
+                    >Project Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="projectName"
+                    name="project_name"
+                    required
+                  />
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="projectDescription" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="projectDescription"
+                    name="description"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="projectDeadline" class="form-label"
+                    >Deadline</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="projectDeadline"
+                    name="deadline"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="projectStatus" class="form-label">Status</label>
+                  <select class="form-select" id="projectStatus" name="status">
+                    <option value="active">Active</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end gap-2 mt-4">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer>
       <div class="container footer-content">
@@ -751,84 +1159,169 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      // JavaScript to handle "Complete" button click
+      // Add scroll effect to navbar
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 10) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Image preview and file handling
+      document
+        .getElementById("profilePicInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              document.getElementById("profileImagePreview").src =
+                e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+      // Function to handle project completion
       function completeProject(button) {
-        if (
-          !confirm("Are you sure you want to mark this project as complete?")
-        ) {
-          return;
-        }
-
         const projectId = button.getAttribute("data-id");
-        const card = button.closest(".card");
-        const buttonText = button.querySelector("span");
+        if (
+          confirm("Are you sure you want to mark this project as complete?")
+        ) {
+          // Here you would typically make an AJAX call to update the project status
+          console.log(`Marking project ${projectId} as complete`);
 
-        // Add loading state
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        if (buttonText) {
-          buttonText.textContent = "Processing...";
+          // Update the UI
+          const card = button.closest(".card");
+          const statusIndicator = card.querySelector(".status-indicator");
+
+          statusIndicator.classList.remove("status-active");
+          statusIndicator.classList.add("status-completed");
+          statusIndicator.innerHTML =
+            '<i class="fas fa-circle me-1" style="font-size: 0.5rem"></i> Completed';
+
+          button.disabled = true;
+          button.innerHTML =
+            '<i class="fas fa-check"></i> <span>Completed</span>';
+
+          // Show success message
+          alert("Project marked as complete successfully!");
         }
-        button.disabled = true;
+      }
 
-        // Add fade out effect to card
-        card.style.transition = "all 0.3s ease";
-        card.style.opacity = "0.8";
-        card.style.transform = "scale(0.98)";
+      // Function to handle project editing
+      function editProject(projectId) {
+        fetch(`/projects/get/${projectId}/`)
+          .then((response) => response.json())
+          .then((data) => {
+            // Populate the form with the fetched project data
+            document.getElementById("projectName").value = data.project_name;
+            document.getElementById("projectDescription").value =
+              data.description;
+            document.getElementById("projectDeadline").value = data.deadline;
 
-        // Send an AJAX request to delete the project
-        fetch(`/delete-project/${projectId}/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": "{{ csrf_token }}",
-          },
-        })
-          .then((response) => {
-            if (response.ok) {
-              // Add success animation before reload
-              card.style.transform = "translateY(-20px)";
-              card.style.opacity = "0";
-              setTimeout(() => {
-                location.reload();
-              }, 300);
-            } else {
-              button.innerHTML = '<i class="fas fa-check-circle"></i>';
-              if (buttonText) {
-                buttonText.textContent = "Mark as Complete";
-              }
-              button.disabled = false;
-              card.style.opacity = "1";
-              card.style.transform = "scale(1)";
-              alert("Failed to complete the project.");
-            }
+            // Set the form action URL and project ID
+            const editForm = document.getElementById("editProjectForm");
+            editForm.setAttribute("data-project-id", projectId);
+
+            // Show the modal
+            const editModal = new bootstrap.Modal(
+              document.getElementById("editProjectModal")
+            );
+            editModal.show();
           })
           .catch((error) => {
-            console.error("Error:", error);
-            button.innerHTML = '<i class="fas fa-check-circle"></i>';
-            if (buttonText) {
-              buttonText.textContent = "Mark as Complete";
-            }
-            button.disabled = false;
-            card.style.opacity = "1";
-            card.style.transform = "scale(1)";
-            alert("An error occurred.");
+            console.error("Error fetching project data:", error);
+            alert("Failed to fetch project details.");
           });
       }
 
-      // Add animation to cards on page load
-      document.addEventListener("DOMContentLoaded", function () {
-        const cards = document.querySelectorAll(".card");
-        cards.forEach((card, index) => {
-          card.style.opacity = "0";
-          card.style.transform = "translateY(20px)";
-          card.style.transition = "all 0.4s ease";
+      // Form submission handlerfor the edit project form
+      document
+        .getElementById("editProjectForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
 
-          setTimeout(() => {
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          }, 100 * index);
+          const formData = new FormData(this);
+          const projectId = this.getAttribute("data-project-id"); // Ensure the project ID is set
+
+          fetch(`/projects/update/${projectId}/`, {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert(data.message); // Show success message
+                location.reload(); // Reload the page to reflect changes
+              } else {
+                alert("Failed to update project: " + data.message);
+              }
+            })
+            .catch((error) => {
+              console.error("Error updating project:", error);
+              alert("An error occurred while updating the project.");
+            });
         });
+
+      // Initialize tooltips
+      const tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
       });
+
+      // Function to update project card after editing
+      function updateProjectCard(projectData) {
+        // Find the card for this project and update its content
+        const projectCards = document.querySelectorAll(".card");
+
+        projectCards.forEach((card) => {
+          if (
+            card.querySelector(".btn-complete").getAttribute("data-id") ===
+            projectData.id
+          ) {
+            // Update the project name
+            card.querySelector(".card-title").textContent =
+              projectData.project_name;
+
+            // Update the description
+            card.querySelector(".project-info:nth-of-type(1) p").innerHTML = `
+                  <i class="fas fa-align-left"></i>
+                  <strong>Description:</strong>
+                  ${projectData.description}
+                `;
+
+            // Update the deadline
+            card.querySelector(".project-info:nth-of-type(2) p").innerHTML = `
+                  <i class="far fa-calendar-alt"></i>
+                  <strong>Deadline:</strong>
+                  <span class="badge bg-primary">${projectData.deadline}</span>
+                `;
+
+            // Update the status
+            const statusIndicator = card.querySelector(".status-indicator");
+            statusIndicator.className = "status-indicator";
+
+            if (projectData.status === "active") {
+              statusIndicator.classList.add("status-active");
+              statusIndicator.innerHTML =
+                '<i class="fas fa-circle me-1" style="font-size: 0.5rem"></i> Active';
+            } else if (projectData.status === "pending") {
+              statusIndicator.classList.add("status-pending");
+              statusIndicator.innerHTML =
+                '<i class="fas fa-circle me-1" style="font-size: 0.5rem"></i> Pending';
+            } else if (projectData.status === "completed") {
+              statusIndicator.classList.add("status-completed");
+              statusIndicator.innerHTML =
+                '<i class="fas fa-circle me-1" style="font-size: 0.5rem"></i> Completed';
+            }
+          }
+        });
+      }
     </script>
   </body>
 </html>

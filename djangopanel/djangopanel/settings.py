@@ -133,3 +133,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login/'  # Redirect to the login page if not authenticated
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

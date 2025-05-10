@@ -5,7 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Project
+from django.shortcuts import redirect
+from .models import Project, Profile
+
+# Ensure all users have a profile
+for user in User.objects.all():
+    Profile.objects.get_or_create(user=user)
 
 @login_required(login_url='login')  # Restrict access to authenticated users
 def index(request):
@@ -69,3 +74,50 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully.')
     return redirect('login')
+
+@login_required(login_url='login')
+def update_profile(request):
+    if request.method == 'POST':
+        user = request.user
+
+        # Ensure the user has a profile
+        profile, created = Profile.objects.get_or_create(user=user)
+
+        # Update user fields
+        user.first_name = request.POST.get('name')
+        user.email = request.POST.get('email')
+
+        # Update profile picture if provided
+        if 'profile_picture' in request.FILES:
+            profile.profile_picture = request.FILES['profile_picture']
+
+        # Update password if provided
+        if request.POST.get('password'):
+            user.set_password(request.POST.get('password'))
+
+        user.save()
+        profile.save()
+        messages.success(request, 'Profile updated successfully!')
+        return redirect('index')
+    return redirect('index')
+
+
+
+def get_project(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    return JsonResponse({
+        "project_name": project.project_name,
+        "description": project.description,
+        "deadline": project.deadline.strftime('%Y-%m-%d'),
+        "status": "active",  # Add a default status if it's not in the model
+    })
+
+def update_project(request, project_id):
+    if request.method == "POST":
+        project = get_object_or_404(Project, id=project_id)
+        project.project_name = request.POST.get("project_name")
+        project.description = request.POST.get("description")
+        project.deadline = request.POST.get("deadline")
+        project.save()  # Save the updated project to the database
+        return JsonResponse({"success": True, "message": "Project updated successfully!"})
+    return JsonResponse({"success": False, "message": "Invalid request method."}, status=400)
